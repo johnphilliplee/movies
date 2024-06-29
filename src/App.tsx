@@ -21,8 +21,12 @@ const App: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie,setSelectedMovie] = useState<Movie | null>(null);
 
+  const deselectMovie = () => {
+    setSelectedMovie(null);
+  };
+
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY&language=en-US&page=1`)
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
     .then(response => {
       setMovies(response.data.results);
     })
@@ -41,10 +45,11 @@ const App: React.FC = () => {
       <Title> Movies App </Title>
       {
         selectedMovie ? (
-          <MovieDetail movie={selectedMovie} />
+          <MovieDetail movie={selectedMovie} onBack={deselectMovie} />
         ) : (
           <MovieList movies={movies} selectMovie={selectMovie} />
-        )}
+        )
+      }
     </AppContainer>
   );
 }

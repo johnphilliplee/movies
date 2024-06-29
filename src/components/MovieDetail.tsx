@@ -4,6 +4,7 @@ import { Movie } from "../types/Movie";
 
 interface MovieDetailProps {
     movie: Movie;
+    onBack: () => void;
 }
 
 const DetailContainer = styled.div`
@@ -29,13 +30,13 @@ const BackButton = styled.button`
     cursor: pointer;
 `;
 
-const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
+const MovieDetail: React.FC<MovieDetailProps> = ({ movie, onBack }) => {
     return (
         <DetailContainer>
             <Title>{movie.title}</Title>
             <Overview>{movie.overview}</Overview>
             <ReleaseDate>{movie.release_date}</ReleaseDate>
-            <BackButton onClick={() => window.history.back()}>Back to list</BackButton>
+            <BackButton onClick={onBack}>Back to list</BackButton>
         </DetailContainer>        
     );
 }
