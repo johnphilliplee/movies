@@ -5,6 +5,7 @@ import MovieDetail from './components/MovieDetail';
 import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyles';
 import { Movie } from './types/Movie';
+import Header from './components/Header';
 
 const AppContainer = styled.div`
   max-width: 800px;
@@ -42,7 +43,7 @@ const App: React.FC = () => {
   return (
     <AppContainer>
       <GlobalStyle />
-      <Title> Movies App </Title>
+      <Header />
       {
         selectedMovie ? (
           <MovieDetail movie={selectedMovie} onBack={deselectMovie} />
